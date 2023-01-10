@@ -31,5 +31,15 @@ namespace Business.Concrete
             _customerDal.Update(customer);
             return new SuccesResult(Messages.CustomerUpdated);
         }
+
+        IDataResult<List<Customer>> ICustomerService.GetAll()
+        {
+            return new SuccessDataResult<List<Customer>>(_customerDal.GetAll());
+        }
+
+        IDataResult<Customer> ICustomerService.GetByCustomerId(int customerId)
+        {
+            return new SuccessDataResult<Customer>(_customerDal.Get(c => c.CustomerId == customerId));
+        }
     }
 }
