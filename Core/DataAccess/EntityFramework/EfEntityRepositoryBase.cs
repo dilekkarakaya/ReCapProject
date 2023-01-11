@@ -11,7 +11,9 @@ namespace Core.DataAccess.EntityFramework
     public class EfEntityRepositoryBase<TEntity, TContext> : IEntityRepository<TEntity>
        where TEntity : class, IEntity, new()
        where TContext : DbContext, new()
-
+        // bana bir tane Entity tipi ver bir tanede context tipi ver.
+        // TEntity= çalışacağım tablonun ne olduğunu söyle,
+        // TContext=bir tane context tipi ver.ben ona göre çalışıcam
     {
         //Bana bir entity ver ve bunu hangi veritabanında işleme sokmak istiyosun onu söyle ki operasyonları tekrarlamıyım.
         //bir tabloyu ilgilendiren bütün operasyonalrı ttoplicaz
@@ -21,8 +23,8 @@ namespace Core.DataAccess.EntityFramework
             using (TContext context = new TContext())
             {
                 var addedEntity = context.Entry(entity); //referasnı yakalama
-                addedEntity.State = EntityState.Added;
-                context.SaveChanges();
+                addedEntity.State = EntityState.Added;//ekle
+                context.SaveChanges();//değişiklikleri kaydet
             }
         }
 
@@ -36,11 +38,12 @@ namespace Core.DataAccess.EntityFramework
             }
         }
 
-        public TEntity Get(Expression<Func<TEntity, bool>> filter)
+        public TEntity Get(Expression<Func<TEntity, bool>> filter)//tek data getirecek
         {
             using (TContext context = new TContext())
             {
                 return context.Set<TEntity>().SingleOrDefault(filter);
+                // Db setimle product a bağlanıyorum(set) SingleOrDefault=> tek bir eleman bulmaya yarar
             }
         }
 
@@ -48,7 +51,13 @@ namespace Core.DataAccess.EntityFramework
         {
             using (TContext context = new TContext())
             {
-                return filter == null ? context.Set<TEntity>().ToList() : context.Set<TEntity>().Where(filter).ToList();
+                //Veri tabanındaki bütün veriyi listeye çevir ve onu bana getir.
+                //(Select * from Products)
+                return filter == null ? context.Set<TEntity>().ToList() //Set<>.()=>>>Bağlamda ve temeldeki depoda verilen türdeki
+                                                                        //varlıklara erişim için bir DbSet<TEntity> örneği döndürür.
+
+                    : context.Set<TEntity>().Where(filter).ToList();   //Buraya parametre göndereceğim şey lambda.
+                                                                       //ben oraya neyazarsam yazayım onu getirecektir.
             }
         }
 

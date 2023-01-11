@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
+    [Route("api/[controller]")]//bu isteği yaparken bu insanlar bize nasıl ulaşsın
+    [ApiController]//ATTRIBUTE bir class la ilgili bilgi verme onu imzalama yöntemidir
     public class CarsController : ControllerBase
     {
         ICarService _carService;

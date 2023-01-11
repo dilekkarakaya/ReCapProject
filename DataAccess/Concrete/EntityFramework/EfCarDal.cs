@@ -9,7 +9,7 @@ using System.Linq.Expressions;
 using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
-{
+{//NuGet
     public class EfCarDal : EfEntityRepositoryBase<Car, ReCapDatabaseContext>,ICarDal
     {
 
