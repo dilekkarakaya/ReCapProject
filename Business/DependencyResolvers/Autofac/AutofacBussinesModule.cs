@@ -13,7 +13,7 @@ using System.Text;
 namespace Business.DependencyResolvers.Autofac
 {
     public class AutofacBussinesModule:Module
-    {
+    {////WebAPI deki startup kısımını buradan yapmamı sağlayacak.
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<CarManager>().As<ICarService>().SingleInstance(); //ICarService istenirse ona CarManager instance'ı ver demek.

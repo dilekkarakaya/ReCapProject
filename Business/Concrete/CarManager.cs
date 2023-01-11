@@ -12,10 +12,12 @@ namespace Business.Concrete
 {
     public class CarManager : ICarService
     {
+        //ICarService içerisindeki bütün işlemleri içermek zorundadır.
+        //Business katmanı veri erişimde hangi frameworke bağlımlı oldugunu minimize ediyorum ICarDal kullanarak.
         ICarDal _carDal;
-        public CarManager(ICarDal carDal)
+        public CarManager(ICarDal carDal)//veri erişim katmanına bir interface üzerinden bağlanıyorum.
         {
-            _carDal = carDal;
+            _carDal = carDal; //bağımlılığı constructor injector ile yapıyorum.
         }
 
         public IResult Add(Car car)

@@ -7,6 +7,7 @@ using System.Text;
 
 namespace Business.Abstract
 {
+    //Is katmanında kullanacağım soyut servis operasyonları
    public interface ICarService
     {
         IDataResult<List<Car>> GetAll();
