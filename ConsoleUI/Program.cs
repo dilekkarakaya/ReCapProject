@@ -18,7 +18,7 @@ namespace ConsoleUI
                 FirstName="Doğu",
                 LastName="Bey",
                 Email="fhdjfdjf",
-                Password="jdfjdfg"
+               // Password="jdfjdfg"
             }
             );
            /* CarManager carManager = new CarManager(new EfCarDal());
