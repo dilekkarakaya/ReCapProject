@@ -20,5 +20,7 @@ namespace Business.Constants
         public static string RentalDeleted="Araç kiralama kaydı silindi";
         public static string RentalUpdated="Araç kiralama kaydı güncellendi";
         public static string RentalNotAdded="Araç kiralama kaydı oluşturulamadı";
+        public static string ColorNotAdded= "Renk eklenemedi";
+        public static string ColorAdded= "REnk eklendi";
     }
 }
